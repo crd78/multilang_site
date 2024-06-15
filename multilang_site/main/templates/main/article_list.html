@@ -1,9 +1,11 @@
 <!-- main/templates/main/article_list.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% load i18n %}{% trans "Articles" %}</title>
+    <link rel="stylesheet" href="{% static 'article.css' %}">
 </head>
 <body>
     <h1>{% trans "Articles" %}</h1>
@@ -26,8 +28,15 @@
 
     <ul>
         {% for article in articles %}
-            <li>{{ article.title }} - {{ article.publication_date }}</li>
+            <li><a href="{% url 'article_detail' article_id=article.id %}">{{ article.title }}</a> - {{ article.publication_date }}</li>
         {% endfor %}
     </ul>
+
+     <!-- Ajoutez un lien vers l'interface d'administration -->
+    <a href="{% url 'admin:index' %}">Accéder à l'interface d'administration</a>
+    </br>
+
+    <!-- Ajoutez un lien vers une page pour le chatbot (exemple) -->
+    <a href="{% url 'chatbot' %}">Accéder au Chatbot</a>
 </body>
 </html>

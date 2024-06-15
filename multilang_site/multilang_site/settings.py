@@ -12,9 +12,18 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Provide the path to the .env file
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+# Charger les variables d'environnement à partir du fichier .env
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
@@ -23,8 +32,7 @@ LOCALE_PATHS = [
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!(b&dznmr28p%*#rk=c)xn1lv5rbr5(vx1kxgh+koovr_kjjc)'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,6 +86,7 @@ WSGI_APPLICATION = 'multilang_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Base de données
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
