@@ -1,22 +1,21 @@
 <!-- main/templates/main/article_detail.html -->
 {% load static %}
+{% load i18n %}  <!-- Charge les tags de traduction -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Article Detail{% endblock %}</title>
+    <title>{% block title %}{% trans "Article Detail" %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'detail.css' %}">
-
 </head>
 <body>
     
-    <h1>{{ article.title }}</h1>
-    <p>Publication Date: {{ article.publication_date }}</p>
+    <h1>{% trans article.title %}</h1>
+    <p>{% trans "Publication Date:" %} {{ article.publication_date|date:"F d, Y" }}</p>
     <p>{{ article.content }}</p>
 
-   
-
     <!-- Ajoutez un lien vers la liste des articles -->
-    <a href="{% url 'article_list' %}">Retour à la liste des articles</a>
+    <a href="{% url 'article_list' %}">{% trans "Back to Article List" %}</a>
 </body>
 </html>
